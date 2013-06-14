@@ -32,7 +32,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-// app.get('/data/:filename', track.getHandler);  <-- disables url localhost:3000/data/myfile.wav
+app.get('/data/:filename', track.getHandler);
 app.post('/upload', routes.postHandler);
 
 http.createServer(app).listen(app.get('port'), function(){
