@@ -3,11 +3,11 @@
  * Module dependencies.
  */
 
-var express = require('express'),
-    routes = require('./routes'),
-    track = require('./routes/track'),
-    http = require('http'),
-    path = require('path');
+var express = require('express');
+var routes = require('./routes');
+var track = require('./routes/track');
+var http = require('http');
+var path = require('path');
 
 var app = express();
 
