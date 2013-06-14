@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link href='http://fonts.googleapis.com/css?family=Kranky' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/javascripts/recorder.js"></script>
+    <script src="/javascripts/HopeYouLikeJamminToo.js"></script>
+  </head>
+  <body>
+    <center><h1><%= title %></h1></center><br><br><br><br>
+    <center>PLUG IN HEADPHONES while streaming.</center><br>
+    <center><button id="stream">start stream</button></center><br>
+    <center>Click "record" ...and jam!</center><br><br>
+    <button id="record"></button>
+    <center>
+      <button id="playAndRecord">rec</button>
+      <button id="playAll">play</button>
+    </center>
+    <center id="status"></center>
+      <ul id="recordingslist">
+        <!-- <audio src="/../data/myfile.wav" controls></audio> -->
+        <% for(var i = 0; i < tracks.length; i++) { %>
+          <!-- <li><%= tracks[i] %></li> -->
+        <!-- <audio src="/../data/<%= tracks[i] %>" controls></audio> -->
+
+        <% } %>
+      </ul>
+  </body>
+</html>

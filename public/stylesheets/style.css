@@ -1,0 +1,49 @@
+body {
+  color: #fff;
+  background-color: #000;
+  background-image: url("/images/microphone.jpg");
+  background-position: 130% 0%;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+h1 {
+  font-family: 'Kranky', cursive;
+  font-size: 40px;
+}
+a {
+  color: #00b7ff;
+}
+ul {
+  list-style-type: none;
+  position: fixed;
+  left: 0px;
+  top: 200px;
+}
+#stream {
+  background-color: #ff0;
+  border-radius: 20px;
+}
+#playAndRecord {
+  border-radius: 100%;
+  background-color: #f00;
+  padding: 20px;
+  font-weight: bold;
+  margin-right: 25px;
+}
+#playAll {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-left: 38px solid #008000;
+  border-right: 0;
+  padding: 0;
+}
+#status {
+  font-size: 20px;
+  color: #f00;
+  margin-top: 50px;
+}
