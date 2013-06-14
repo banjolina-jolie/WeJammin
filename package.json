@@ -2,8 +2,8 @@
   "name": "WeJammin",
   "version": "0.0.1",
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "node": "0.10.11",
+    "npm": "1.2.30"
   },
   "scripts": {
     "start": "node app.js"
