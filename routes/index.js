@@ -1,6 +1,16 @@
 var fs = require('fs');
+var pg = require('pg');
 
 exports.index = function(req, res){
+
+  // pg.connect(process.env.DATABASE_URL, function(err, client){
+  //   var query = client.query('SELECT * FROM my_table');
+
+  //   query.on('row', function(row){
+  //     console.log(JSON.stringify(row));
+  //   });
+  // });
+
   fs.readFile("./data/songs.txt", 'utf8', function(err, data){
     var tracks = data.split('\n');
 

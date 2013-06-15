@@ -32,7 +32,7 @@ var createAudioElement = function() {
     $li.append($bu);
     $("#recordingslist").append($li);
 
-    $('.removal').on('click', function(e){
+    $('.removal').on('click', function(e) {
       e.currentTarget.parentElement.remove();
     });
 
@@ -43,8 +43,8 @@ var checkedBoxes = document.getElementsByTagName("input");
 var audios = document.getElementsByTagName("audio");
 
 var playThemAll = function(audioList) {
-  for(var i = 0; i < audioList.length; i++){
-    if(audioList[i].checked){
+  for(var i = 0; i < audioList.length; i++) {
+    if(audioList[i].checked) {
       if(i > 0){
         audioList[i].nextSibling.currentTime = 0.07;
       } else {
@@ -56,12 +56,12 @@ var playThemAll = function(audioList) {
 };
 
 var pauseThemAll = function(audioList) {
-  for(var i = 0; i < audioList.length; i++){
+  for(var i = 0; i < audioList.length; i++) {
     audioList[i].pause();
   }
 };
 
-$('document').ready(function(){
+$('document').ready(function() {
 
   $('button#record').hide();
 
@@ -79,7 +79,7 @@ $('document').ready(function(){
     }
   });
 
-  $('button#playAll').on('click', function(){
+  $('button#playAll').on('click', function() {
     if(playing){
       pauseThemAll(audios);
       playing = false;
@@ -89,12 +89,12 @@ $('document').ready(function(){
     }
   });
 
-  $('button#playAndRecord').on('click', function(){
+  $('button#playAndRecord').on('click', function() {
     $('button#record').trigger('click');
     $('button#playAll').trigger('click');
   });
 
-  $('button#stream').on('click', function(){
+  $('button#stream').on('click', function() {
     if(streaming){
       $(this).html("start stream");
       $('.streamingStatus').removeClass("happening");

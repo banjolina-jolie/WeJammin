@@ -1,7 +1,6 @@
 (function(window){
 
   window.localstream;
-  // window.contextuals;
 
   var startUserMedia = function(stream) {
     window.input = audio_context.createMediaStreamSource(stream);
@@ -23,7 +22,6 @@
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
       window.URL = window.URL || window.webkitURL;
       audio_context = new AudioContext();
-      // window.contextuals = audio_context;
     } catch (e) {
       //alert('No web audio support in this browser!');
     }
