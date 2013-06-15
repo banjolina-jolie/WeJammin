@@ -2,7 +2,6 @@ var streaming;
 var recording;
 var playing;
 
-
 var upload = function(blob) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/upload', true);
@@ -47,11 +46,10 @@ var playThemAll = function(audioList) {
   for(var i = 0; i < audioList.length; i++){
     if(audioList[i].checked){
       if(i > 0){
-        audioList[i].nextSibling.currentTime = 0.08;
+        audioList[i].nextSibling.currentTime = 0.07;
       } else {
         audioList[i].nextSibling.currentTime = 0;
       }
-      console.log(audioList[i].nextSibling);
       audioList[i].nextSibling.play();
     }
   }
@@ -72,14 +70,10 @@ $('document').ready(function(){
       recorder.stop();
       createAudioElement();
       recorder.clear();
-      // $('button#playAndRecord').html('record');
-      $('button#playAndRecord').removeClass('recording');
       $('#status').html("");
       recording = false;
     } else {
       recorder.record();
-      // $('button#playAndRecord').html('recording...');
-      $('button#playAndRecord').addClass('recording');
       $('#status').html("recording...");
       recording = true;
     }
@@ -103,6 +97,8 @@ $('document').ready(function(){
   $('button#stream').on('click', function(){
     if(streaming){
       $(this).html("start stream");
+      $('.streamingStatus').removeClass("happening");
+      $('.streamingStatus').addClass("notHappening");
       window.localstream.stop();
       window.input.disconnect();
       streaming = false;

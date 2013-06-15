@@ -8,7 +8,7 @@
     window.localstream = stream;
     window.input.connect(audio_context.destination);
     window.recorder = new Recorder(input);
-    $('#stream').html("stop stream");
+    $('#stream').html("end stream");
   };
 
   window.stopStream = function(stream) {
