@@ -17,13 +17,17 @@
       <button id="playAndRecord">rec</button>
       <button id="playAll">play</button>
     </center>
+    <center></center>
     <center id="status"></center>
       <ul id="recordingslist">
-        <!-- <audio src="/../data/myfile.wav" controls></audio> -->
         <% for(var i = 0; i < tracks.length; i++) { %>
-          <!-- <li><%= tracks[i] %></li> -->
-        <!-- <audio src="/../data/<%= tracks[i] %>" controls></audio> -->
-
+          <li>
+            <span><%= tracks[i] %></span>
+            <input class="songName"type="text"><br>
+            <input type="checkbox" checked="true">
+            <audio class ="saved" src="http://localhost:3000/data/<%= tracks[i] %>" controls type="audio/x-wav"></audio>
+            <button class="removal">X</button>
+          </li><br>
         <% } %>
       </ul>
   </body>

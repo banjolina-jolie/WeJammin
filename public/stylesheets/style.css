@@ -50,3 +50,7 @@ ul {
   color: #f00;
   margin-top: 50px;
 }
+.saved {
+  border-style: solid;
+  border-color: #00f;
+}
