@@ -33,8 +33,10 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-// app.get('/data/:filename', track.getHandler);
+
 app.post('/upload', routes.postHandler);
+
+app.post('/rename/:id', routes.rename);
 
 app.delete('/delete/:id', routes.delete);
 

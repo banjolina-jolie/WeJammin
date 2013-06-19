@@ -7,27 +7,49 @@ body
   background-repeat: no-repeat
   padding: 50px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+
 h1
   font-family: 'Kranky', cursive;
   font-size: 40px
+
 a
   color: #00B7FF
+
 ul
   list-style-type: none
   position: fixed
   left: 0px
   top:200px
-  
+
+button
+  opacity: 0.8
+
+button:hover
+  cursor: pointer
+  opacity: 1
+
+.rename
+  font-size: 9px
+  margin-left: 215px
+  color: gray
+  opacity: 0.8
+
+.rename:hover
+  cursor: pointer
+  opacity: 1
+
 #stream
   background-color: yellow
   border-radius: 20px
   margin-left: 25px
+
 #playAndRecord
   border-radius: 100%
   background-color: red
   padding: 18px
   font-weight: bold
   margin-right: 25px
+
 #playAll
   width: 0
   height: 0
@@ -39,10 +61,15 @@ ul
   padding: 0
   position: absolute
   top: 274px
+
+#playAll:active
+  top:275px
+
 #status
   font-size: 20px
   color: red
   margin-top:50px
+
 .saved
   border-style: solid
   border-color: blue

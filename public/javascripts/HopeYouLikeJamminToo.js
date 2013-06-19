@@ -21,11 +21,6 @@ var upload = function(blob, callback) {
   xhr.send(blob);
 };
 
-// var redirect = function(){
-//   var newxhr = new XMLHttpRequest();
-//   newxhr.open('GET', '/', true);
-//   newxhr.send();
-// };
 
 var removeTrack = function(id){
   var xhr = new XMLHttpRequest();
@@ -33,20 +28,12 @@ var removeTrack = function(id){
   xhr.send();
 };
 
-
-var findLowNum = function(){
-  if(!trackNums.length){
-    trackNums.push(0);
-    return 0;
-  }
-  trackNums.sort();
-  for(var i = 0; i < trackNums.length; i++){
-    if(trackNums[i+1] != i+1){
-      trackNums.splice(i+1, 0, i+1);
-      return i+1;
-    }
-  }
+var rename = function(id, newname){
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/rename/'+id, true);
+  xhr.send(newname);
 };
+
 
 var createAudioElement = function() {
   recorder.exportWAV(function(blob) {
@@ -55,13 +42,12 @@ var createAudioElement = function() {
 
     upload(blob, function(response) {
 
-      var n = findLowNum();
       var $li = $('<li></li>');
       var $sn = $('<span>'+response.name+'</span>')
-      var $inpt = $('<input class="songName"type="text"><br>')
+      var $rnm = $('<span class="rename">rename</span><br>')
       var $au = $('<audio src='+url+' controls></audio>');
       var $bu = $('<button class="removal">X</button>');
-      var $cx = $('<input type="checkbox" checked="true">');
+      // var $cx = $('<input type="checkbox" checked="true">');
       var chillen = new Date();
       $bu.attr("id", "removal");
       var hf = document.createElement('a');
@@ -70,21 +56,22 @@ var createAudioElement = function() {
       hf.innerHTML = hf.download;
       hf.href = url;
       $li.append($sn);
-      $li.append($inpt);
-      $li.append($cx);
+      $li.append($rnm);
+      // $li.append($cx);
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
 
       $('.removal').on('click', function(e) {
-        removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
+        removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
         e.currentTarget.parentElement.remove();
       });
     });
   });
 };
 
-var checkedBoxes = document.getElementsByTagName("input");
+
+// var checkedBoxes = document.getElementsByTagName("input");
 var audios = document.getElementsByTagName("audio");
 
 var playThemAll = function(audioList) {
@@ -151,7 +138,11 @@ $('document').ready(function() {
   });
 
   $('.removal').on('click', function(e) {
-        removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
-        e.currentTarget.parentElement.remove();
-      });
+    removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
+    e.currentTarget.parentElement.remove();
+  });
+
+  $('.rename').on('click', function(e) {
+    rename("track_2");
+  })
 });
