@@ -80,7 +80,7 @@ var playThemAll = function(audioList) {
   audioList[0].currentTime = 0;
   audioList[0].play();
   for(var i = 1; i < audioList.length; i++) {
-    audioList[i].currentTime = 0.07;
+    audioList[i].currentTime = 0.05;
     audioList[i].play();
   }
 };
