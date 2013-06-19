@@ -28,10 +28,11 @@ var removeTrack = function(id){
   xhr.send();
 };
 
-var rename = function(id, newname){
+var rename = function(trackName, newName){
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/rename/'+id, true);
-  xhr.send(newname);
+  xhr.open('POST', '/rename?trackName=' + trackName + '&newName=' + newName, true);
+  xhr.onload
+  xhr.send(newName);
 };
 
 
@@ -143,6 +144,9 @@ $('document').ready(function() {
   });
 
   $('.rename').on('click', function(e) {
-    rename("track_2");
+    var oldName = e.currentTarget.previousSibling.previousSibling.innerHTML;
+    var newName = prompt("What's your track's name?");
+    $(this).prev().html(newName);
+    rename(oldName, newName);
   })
 });

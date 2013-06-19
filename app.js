@@ -36,7 +36,7 @@ app.get('/', routes.index);
 
 app.post('/upload', routes.postHandler);
 
-app.post('/rename/:id', routes.rename);
+app.post('/rename', routes.rename);
 
 app.delete('/delete/:id', routes.delete);
 

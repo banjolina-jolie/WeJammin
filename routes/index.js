@@ -1,5 +1,6 @@
 var fs = require('fs');
 var pg = require('pg');
+var qs = require('querystring');
 var stream;
 var name;
 
@@ -59,10 +60,13 @@ exports.postHandler = function(req, res){
   });
 };
 
-exports.rename = function(req, res, oldName, newName){
-  fs.rename('./data/'+req.params.id, newName, function(err, success){
+exports.rename = function(req, res){
+  var oldName = qs.parse(req._parsedUrl.query).trackName;
+  var newName = qs.parse(req._parsedUrl.query).newName;
+  fs.rename('./data/'+oldName, './data/'+newName, function(err, success){
     if(err) console.error(err);
     console.log("filename changed ", success);
+    res.end("cowshit");
   });
 };
 
