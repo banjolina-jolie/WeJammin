@@ -67,6 +67,13 @@ var createAudioElement = function() {
         removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
         e.currentTarget.parentElement.remove();
       });
+
+      $('.rename').on('click', function(e) {
+        var oldName = $(this).prev().prev().html();
+        var newName = prompt("What's your track's name?");
+        $(this).prev().html(newName);
+        rename(oldName, newName);
+      });
     });
   });
 };
@@ -148,5 +155,5 @@ $('document').ready(function() {
     var newName = prompt("What's your track's name?");
     $(this).prev().html(newName);
     rename(oldName, newName);
-  })
+  });
 });
