@@ -77,13 +77,19 @@ exports.delete = function(req, res){
     if(err) console.error(err);
     console.log("file deleted");
   });
+  client.del('/data/'+ req.params.id).on('response', function(resp){
+    console.log(resp.statusCode);
+    console.log(resp.headers);
+  }).end();
 };
 
 
-exports.knoxTest = function(){
-  fs.readFile('./data/intro', function(err, buf){
-    var req = client.put('/data/intro', {
-        'Content-Length': buf.length
+exports.knoxTest = function(requezt){
+  var oldName = qs.parse(requezt._parsedUrl.query).trackName;
+  fs.readFile('./data/' + oldName, function(err, buf){
+    var req = client.put('/data/' + oldName, {
+        'x-amz-acl': 'public-read'
+      , 'Content-Length': buf.length
       , 'Content-Type': 'text/plain'
     });
     req.on('response', function(res){

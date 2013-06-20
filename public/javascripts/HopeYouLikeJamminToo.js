@@ -73,7 +73,7 @@ var createAudioElement = function() {
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
-      // uploadToAWS(response.name);
+      uploadToAWS(response.name);
     });
   });
 };
