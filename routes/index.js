@@ -1,8 +1,7 @@
 var fs = require('fs');
 var pg = require('pg');
 var qs = require('querystring');
-var stream;
-var name;
+
 
 exports.index = function(req, res){
 
@@ -62,10 +61,10 @@ exports.postHandler = function(req, res){
 
 exports.rename = function(req, res){
   var oldName = qs.parse(req._parsedUrl.query).trackName;
+  console.log(oldName);
   var newName = qs.parse(req._parsedUrl.query).newName;
   fs.rename('./data/'+oldName, './data/'+newName, function(err, success){
     if(err) console.error(err);
-    // res.end("cowshit");
   });
 };
 

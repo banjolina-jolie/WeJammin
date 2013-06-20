@@ -4,6 +4,7 @@ var playing;
 var blobbarooni;
 var trackNums = [];
 
+
 var upload = function(blob, callback) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/upload', true);
@@ -28,10 +29,18 @@ var removeTrack = function(id){
   xhr.send();
 };
 
-var rename = function(trackName, newName){
-  console.log('trigga');
+
+var renameIt = function(trackName, newName){
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/rename?trackName=' + trackName + '&newName=' + newName, true);
+  // xhr.onload = function(){
+  //   try {
+  //     console.log("ok");
+  //     var response = JSON.parse(xhr.responseText);
+  //     console.log(response);
+  //   }
+  //   catch(err) { console.error('darn. error when renaming'); }
+  // };
   xhr.send();
 };
 
@@ -48,7 +57,6 @@ var createAudioElement = function() {
       var $rnm = $('<span class="rename">rename</span><br>')
       var $au = $('<audio src='+url+' controls></audio>');
       var $bu = $('<button class="removal">X</button>');
-      // var $cx = $('<input type="checkbox" checked="true">');
       var chillen = new Date();
       $bu.attr("id", "removal");
       var hf = document.createElement('a');
@@ -58,7 +66,6 @@ var createAudioElement = function() {
       hf.href = url;
       $li.append($sn);
       $li.append($rnm);
-      // $li.append($cx);
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
@@ -68,19 +75,21 @@ var createAudioElement = function() {
         e.currentTarget.parentElement.remove();
       });
 
-      $('.rename').on('click', function() {
-        var oldName = $(this).prev().prev().html();
+      $('.rename').on('click', function(e) {
+         event.stopPropagation();
+        // var oldName = $(this).prev().html();
+        var oldName = this.previousSibling.innerHTML;
         var newName = prompt("What's your track's name?");
         $(this).prev().html(newName);
-        rename(oldName, newName);
+        renameIt(oldName, newName);
       });
     });
   });
 };
 
 
-// var checkedBoxes = document.getElementsByTagName("input");
 var audios = document.getElementsByTagName("audio");
+
 
 var playThemAll = function(audioList) {
   if(!audios.length) return;
@@ -92,11 +101,13 @@ var playThemAll = function(audioList) {
   }
 };
 
+
 var pauseThemAll = function(audioList) {
   for(var i = 0; i < audioList.length; i++) {
     audioList[i].pause();
   }
 };
+
 
 $('document').ready(function() {
 
@@ -116,6 +127,7 @@ $('document').ready(function() {
     }
   });
 
+
   $('button#playAll').on('click', function() {
     if(playing){
       pauseThemAll(audios);
@@ -126,10 +138,12 @@ $('document').ready(function() {
     }
   });
 
+
   $('button#playAndRecord').on('click', function() {
     $('button#record').trigger('click');
     $('button#playAll').trigger('click');
   });
+
 
   $('button#stream').on('click', function() {
     if(streaming){
@@ -145,15 +159,17 @@ $('document').ready(function() {
     }
   });
 
+
   $('.removal').on('click', function(e) {
     removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
     e.currentTarget.parentElement.remove();
   });
 
+
   $('.rename').on('click', function(e) {
     var oldName = e.currentTarget.previousSibling.previousSibling.innerHTML;
     var newName = prompt("What's your track's name?");
-    rename(oldName, newName);
+    renameIt(oldName, newName);
     $(this).prev().html(newName);
   });
 });
