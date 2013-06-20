@@ -16,7 +16,6 @@
     "express": "3.2.6",
     "ejs": "*",
     "stylus": "*",
-    "pg": "0.6.15",
     "express": "latest"
   }
 }

@@ -44,6 +44,7 @@ button:hover {
   background-color: #ff0;
   border-radius: 20px;
   margin-left: 25px;
+  padding-bottom: 4px;
 }
 #playAndRecord {
   border-radius: 100%;
@@ -82,7 +83,7 @@ button:hover {
   left: 645px;
   color: #000;
   font-size: 10px;
-  z-index: 1;
+  z-index: -1;
   font-weight: bold;
   cursor: pointer;
   opacity: 1;

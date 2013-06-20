@@ -33,14 +33,6 @@ var removeTrack = function(id){
 var renameIt = function(trackName, newName){
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/rename?trackName=' + trackName + '&newName=' + newName, true);
-  // xhr.onload = function(){
-  //   try {
-  //     console.log("ok");
-  //     var response = JSON.parse(xhr.responseText);
-  //     console.log(response);
-  //   }
-  //   catch(err) { console.error('darn. error when renaming'); }
-  // };
   xhr.send();
 };
 

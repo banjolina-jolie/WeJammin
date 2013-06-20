@@ -1,5 +1,4 @@
 var fs = require('fs');
-var pg = require('pg');
 var qs = require('querystring');
 
 
