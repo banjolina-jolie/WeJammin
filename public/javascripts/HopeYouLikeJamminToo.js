@@ -29,10 +29,10 @@ var removeTrack = function(id){
 };
 
 var rename = function(trackName, newName){
+  console.log('trigga');
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/rename?trackName=' + trackName + '&newName=' + newName, true);
-  xhr.onload
-  xhr.send(newName);
+  xhr.send();
 };
 
 
