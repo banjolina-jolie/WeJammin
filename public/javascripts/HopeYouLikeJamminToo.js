@@ -36,6 +36,12 @@ var renameIt = function(trackName, newName){
   xhr.send();
 };
 
+var uploadToAWS = function(trackName) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/knoxLoad?trackName=' + trackName, true);
+  xhr.send();
+};
+
 
 var createAudioElement = function() {
   recorder.exportWAV(function(blob) {
@@ -67,6 +73,7 @@ var createAudioElement = function() {
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
+      // uploadToAWS(response.name);
     });
   });
 };

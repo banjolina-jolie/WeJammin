@@ -35,7 +35,10 @@ app.get('/', routes.index);
 
 app.post('/upload', routes.postHandler);
 
-app.post('/rename', routes.rename);
+// app.post('/rename', routes.rename);
+app.post('/rename', routes.knoxTest);
+
+// app.post('/knoxLoad', routes.knoxTest)
 
 app.delete('/delete/:id', routes.delete);
 
