@@ -53,14 +53,20 @@ var createAudioElement = function() {
     upload(blob, function(response) {
 
       var $li = $('<li></li>');
-      var $sn = $('<span>'+response.name+'</span>')
-      var $rnm = $('<span class="rename">rename</span><br>')
+      var $sn = $('<span>'+response.name+'</span>');
+      var $rnm = $('<span class="rename">rename</span><br>').on('click', function(e) {
+        var oldName = this.previousSibling.innerHTML;
+        var newName = prompt("What's your track's name?");
+        $(this).prev().html(newName);
+        renameIt(oldName, newName);
+      });
       var $au = $('<audio src='+url+' controls></audio>');
-      var $bu = $('<button class="removal">X</button>');
+      var $bu = $('<button class="removal">X</button>').on('click', function(e) {
+        removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
+        e.currentTarget.parentElement.remove();
+      });
       var chillen = new Date();
-      $bu.attr("id", "removal");
       var hf = document.createElement('a');
-
       hf.download = new Date().toISOString() + '.wav';
       hf.innerHTML = hf.download;
       hf.href = url;
@@ -69,20 +75,6 @@ var createAudioElement = function() {
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
-
-      $('.removal').on('click', function(e) {
-        removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
-        e.currentTarget.parentElement.remove();
-      });
-
-      $('.rename').on('click', function(e) {
-         event.stopPropagation();
-        // var oldName = $(this).prev().html();
-        var oldName = this.previousSibling.innerHTML;
-        var newName = prompt("What's your track's name?");
-        $(this).prev().html(newName);
-        renameIt(oldName, newName);
-      });
     });
   });
 };
