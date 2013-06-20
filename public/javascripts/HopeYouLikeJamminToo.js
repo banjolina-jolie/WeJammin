@@ -68,7 +68,7 @@ var createAudioElement = function() {
         e.currentTarget.parentElement.remove();
       });
 
-      $('.rename').on('click', function(e) {
+      $('.rename').on('click', function() {
         var oldName = $(this).prev().prev().html();
         var newName = prompt("What's your track's name?");
         $(this).prev().html(newName);
@@ -153,7 +153,7 @@ $('document').ready(function() {
   $('.rename').on('click', function(e) {
     var oldName = e.currentTarget.previousSibling.previousSibling.innerHTML;
     var newName = prompt("What's your track's name?");
-    $(this).prev().html(newName);
     rename(oldName, newName);
+    $(this).prev().html(newName);
   });
 });

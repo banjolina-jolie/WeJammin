@@ -65,8 +65,7 @@ exports.rename = function(req, res){
   var newName = qs.parse(req._parsedUrl.query).newName;
   fs.rename('./data/'+oldName, './data/'+newName, function(err, success){
     if(err) console.error(err);
-    console.log("filename changed ", success);
-    res.end("cowshit");
+    // res.end("cowshit");
   });
 };
 
