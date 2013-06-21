@@ -41,8 +41,6 @@ var doUpload = function(err, filename, req, res) {
     return false;
   }
 
-  console.log(filename);
-
   var stream = fs.createWriteStream('data/'+filename._id);
 
   req.on('data', function(data) {
@@ -55,12 +53,6 @@ var doUpload = function(err, filename, req, res) {
       id: filename._id
     });
   });
-
-  // var newTrack = new Track({
-  //   name: filename
-  // });
-
-  // newTrack._id.toString()
 
   filename.save(function(err, success){
     if(err) console.error(err);
