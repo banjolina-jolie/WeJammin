@@ -22,8 +22,13 @@ var client = knox.createClient({
 
 
 var getFilename = function(callback) {
-  var name = new Date();
-  callback(null, name.getTime());
+  var name = crypto.randomBytes(10).toString('hex');
+
+  var newTrack = new Track({
+    name: name
+  });
+
+  callback(null, newTrack);
 };
 
 
@@ -36,7 +41,9 @@ var doUpload = function(err, filename, req, res) {
     return false;
   }
 
-  var stream = fs.createWriteStream('data/'+filename);
+  console.log(filename);
+
+  var stream = fs.createWriteStream('data/'+filename._id);
 
   req.on('data', function(data) {
     stream.write(data);
@@ -44,17 +51,18 @@ var doUpload = function(err, filename, req, res) {
 
   req.on('end', function () {
     res.json({
-      name: filename
+      name: filename.name,
+      id: filename._id
     });
   });
 
-  var newTrack = new Track({
-    name: filename
-  });
+  // var newTrack = new Track({
+  //   name: filename
+  // });
 
-  newTrack._id.toString()
+  // newTrack._id.toString()
 
-  newTrack.save(function(err, success){
+  filename.save(function(err, success){
     if(err) console.error(err);
     console.log(success);
   });

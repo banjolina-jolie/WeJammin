@@ -1,7 +1,6 @@
 var streaming;
 var recording;
 var playing;
-var blobbarooni;
 var trackNums = [];
 
 
@@ -12,6 +11,7 @@ var upload = function(blob, callback) {
     if(xhr.status === 200){
       try {
         var response = JSON.parse(xhr.responseText);
+        // console.log(response);
       }
       catch(err) { console.error('Shit, invalid JSON!'); }
 
@@ -45,7 +45,6 @@ var uploadToAWS = function(trackName) {
 
 var createAudioElement = function() {
   recorder.exportWAV(function(blob) {
-    blobbarooni = blob;
     url = URL.createObjectURL(blob);
 
     upload(blob, function(response) {
@@ -73,8 +72,8 @@ var createAudioElement = function() {
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
-      console.log(response.name);
-      uploadToAWS(response.name);
+      console.log(response);
+      uploadToAWS(response.id);
     });
   });
 };
