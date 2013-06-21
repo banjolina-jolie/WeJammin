@@ -4,7 +4,7 @@ var knox = require('knox');
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 
-var MONGOHQ_URI = 'mongodb://Dylan:wejamm1n@dharma.mongohq.com:10001/wejammin';
+var MONGOHQ_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGOHQ_URI);
 
@@ -15,14 +15,13 @@ var trackSchema = new mongoose.Schema({
 var Track = mongoose.model('Track', trackSchema);
 
 var client = knox.createClient({
-    key: 'AKIAIHIZFDI47ANJJYGQ'
-  , secret: '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'
-  , bucket: 'wejammin'
+    key: process.env.S3_KEY
+  , secret: process.env.S3_SECRET
+  , bucket: process.env.S3_BUCKET
 });
 
 
 var getFilename = function(callback) {
-  // var name = crypto.randomBytes(10).toString('hex');
 
   var newTrack = new Track({
     name: "[click to rename]"
