@@ -11,7 +11,6 @@ var upload = function(blob, callback) {
     if(xhr.status === 200){
       try {
         var response = JSON.parse(xhr.responseText);
-        // console.log(response);
       }
       catch(err) { console.error('Shit, invalid JSON!'); }
 
@@ -72,7 +71,6 @@ var createAudioElement = function() {
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
-      console.log(response);
       uploadToAWS(response.id);
     });
   });
