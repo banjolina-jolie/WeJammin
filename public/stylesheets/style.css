@@ -17,7 +17,6 @@ a {
 }
 ul {
   list-style-type: none;
-  position: fixed;
   left: 0px;
   top: 200px;
 }
@@ -34,7 +33,7 @@ button:hover {
   color: #808080;
   opacity: 0.8;
   position: fixed;
-  left: 80px;
+  left: 175px;
 }
 .rename:hover {
   cursor: pointer;

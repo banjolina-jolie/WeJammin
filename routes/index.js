@@ -2,6 +2,7 @@ var fs = require('fs');
 var qs = require('querystring');
 var knox = require('knox');
 var mongoose = require('mongoose');
+var crypto = require('crypto');
 
 var MONGOHQ_URI = 'mongodb://Dylan:wejamm1n@dharma.mongohq.com:10001/wejammin';
 
@@ -19,32 +20,12 @@ var client = knox.createClient({
   , bucket: 'wejammin'
 });
 
-exports.index = function(req, res){
-
-  fs.readdir('./data', function(err, tracks) {
-    if (err) {
-      res.render('index', { title: 'SHIT BROKE! ', tracks: [] });
-    }
-    else {
-      res.render('index', { title: 'WeJammin', tracks: tracks});
-    }
-  });
-};
 
 var getFilename = function(callback) {
-  fs.readdir('./data', function(err, tracks) {
-    if (err) {
-      callback(err, null);
-    } else {
-      var n = 1;
-      while (tracks.indexOf('track_'+n) !== -1) {
-        n++;
-      }
-      var filename = 'track_'+n;
-      callback(null, filename);
-    }
-  });
+  var name = new Date();
+  callback(null, name.toUTCString());
 };
+
 
 var doUpload = function(err, filename, req, res) {
   if (err) {
@@ -71,21 +52,26 @@ var doUpload = function(err, filename, req, res) {
     name: filename
   });
 
+  newTrack._id.toString()
+
   newTrack.save(function(err, success){
     if(err) console.error(err);
     console.log(success);
   });
 
-  Track.find(function(err, tracks){
-    if(err) console.error(err);
-    console.log(tracks);
-  });
-
-  Track.find({ name: /^track/ }, function(err, tracks){
-    console.log("tracks: ", tracks);
-  });
-
 };
+
+
+exports.index = function(req, res){
+  Track.find(function(err, tracks){
+    if(err) {
+      res.render('index', { title: 'Error Loading Page', tracks: [] });
+    } else {
+      res.render('index', { title: 'WeJammin', tracks: tracks});
+    }
+  });
+};
+
 
 exports.postHandler = function(req, res){
   getFilename(function(err, tracks) {
@@ -93,20 +79,22 @@ exports.postHandler = function(req, res){
   });
 };
 
+
 exports.rename = function(req, res){
   var oldName = qs.parse(req._parsedUrl.query).trackName;
   var newName = qs.parse(req._parsedUrl.query).newName;
   fs.rename('./data/'+oldName, './data/'+newName, function(err, success){
     if(err) console.error(err);
   });
+
+  Track.findOneAndUpdate({name: oldName}, {name: newName}, function(err, success) {
+    if(err) console.error(err);
+    console.log(success);
+  });
 };
 
-exports.delete = function(req, res){
-  fs.unlink('./data/'+req.params.id, function(err, success){
-    if(err) console.error(err);
-    console.log("file deleted");
-  });
 
+exports.delete = function(req, res){
   client.del('/data/'+ req.params.id).on('response', function(resp){
     console.log(resp.statusCode);
     console.log(resp.headers);
@@ -132,6 +120,11 @@ exports.knoxTest = function(requezt){
         console.log('saved to %s', req.url);
       }
     });
-    req.end(buf);
+    req.end(buf, function(err, success){
+      if(err) console.error(err);
+      fs.unlink('./data/' + oldName, function(err){
+        if(err) console.error(err);
+      });
+    });
   });
 };
