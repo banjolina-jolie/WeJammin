@@ -1,6 +1,17 @@
 var fs = require('fs');
 var qs = require('querystring');
 var knox = require('knox');
+var mongoose = require('mongoose');
+
+var MONGOHQ_URI = 'mongodb://Dylan:wejamm1n@dharma.mongohq.com:10001/wejammin';
+
+mongoose.connect(MONGOHQ_URI);
+
+var trackSchema = new mongoose.Schema({
+  name: "string"
+});
+
+var Track = mongoose.model('Track', trackSchema);
 
 var client = knox.createClient({
     key: 'AKIAIHIZFDI47ANJJYGQ'
@@ -55,6 +66,25 @@ var doUpload = function(err, filename, req, res) {
       name: filename
     });
   });
+
+  var newTrack = new Track({
+    name: filename
+  });
+
+  newTrack.save(function(err, success){
+    if(err) console.error(err);
+    console.log(success);
+  });
+
+  Track.find(function(err, tracks){
+    if(err) console.error(err);
+    console.log(tracks);
+  });
+
+  Track.find({ name: /^track/ }, function(err, tracks){
+    console.log("tracks: ", tracks);
+  });
+
 };
 
 exports.postHandler = function(req, res){
@@ -65,7 +95,6 @@ exports.postHandler = function(req, res){
 
 exports.rename = function(req, res){
   var oldName = qs.parse(req._parsedUrl.query).trackName;
-  console.log(oldName);
   var newName = qs.parse(req._parsedUrl.query).newName;
   fs.rename('./data/'+oldName, './data/'+newName, function(err, success){
     if(err) console.error(err);
@@ -77,10 +106,16 @@ exports.delete = function(req, res){
     if(err) console.error(err);
     console.log("file deleted");
   });
+
   client.del('/data/'+ req.params.id).on('response', function(resp){
     console.log(resp.statusCode);
     console.log(resp.headers);
   }).end();
+
+  Track.findOneAndRemove({ name: req.params.id }, function(err, success){
+    if(err) console.error(err);
+    console.log("track deleted: ", success);
+  });
 };
 
 
