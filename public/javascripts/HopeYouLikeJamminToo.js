@@ -52,8 +52,10 @@ var createAudioElement = function() {
       var $sn = $('<span class="trackName">'+response.name+'</span><br>').on('click', function(e) {
         var oldName = this.innerHTML;
         var newName = prompt("What's your track's name?");
-        $(this).html(newName);
-        renameIt(oldName, newName);
+        if(newName){
+          $(this).html(newName);
+          renameIt(oldName, newName);
+        }
       });
       var $au = $('<audio src='+url+' controls></audio>');
       var $bu = $('<button class="removal">X</button>').on('click', function(e) {
@@ -156,8 +158,10 @@ $('document').ready(function() {
   $('.trackName').on('click', function(e) {
     var oldName = e.currentTarget.innerHTML;
     var newName = prompt("What's your track's name?");
-    renameIt(oldName, newName);
-    $(this).html(newName);
+    if(newName){
+      renameIt(oldName, newName);
+      $(this).html(newName);
+    }
   });
 
   $('#help').on('click', function(){
