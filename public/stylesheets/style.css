@@ -27,15 +27,10 @@ button:hover {
   cursor: pointer;
   opacity: 1;
 }
-.rename {
-  font-size: 9px;
-  margin-left: 215px;
-  color: #808080;
-  opacity: 0.8;
-  position: fixed;
-  left: 175px;
+.trackName {
+  opacity: 0.7;
 }
-.rename:hover {
+.trackName:hover {
   cursor: pointer;
   opacity: 1;
 }
@@ -86,4 +81,15 @@ button:hover {
   font-weight: bold;
   cursor: pointer;
   opacity: 1;
+}
+#help {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  opacity: 0.7;
+  text-decoration: underline;
+}
+#help:hover {
+  opacity: 1;
+  cursor: pointer;
 }

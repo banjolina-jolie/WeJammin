@@ -49,16 +49,15 @@ var createAudioElement = function() {
     upload(blob, function(response) {
 
       var $li = $('<li></li>');
-      var $sn = $('<span>'+response.name+'</span>');
-      var $rnm = $('<span class="rename">rename</span><br>').on('click', function(e) {
-        var oldName = this.previousSibling.innerHTML;
+      var $sn = $('<span class="trackName">'+response.name+'</span><br>').on('click', function(e) {
+        var oldName = this.innerHTML;
         var newName = prompt("What's your track's name?");
-        $(this).prev().html(newName);
+        $(this).html(newName);
         renameIt(oldName, newName);
       });
       var $au = $('<audio src='+url+' controls></audio>');
       var $bu = $('<button class="removal">X</button>').on('click', function(e) {
-        removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
+        removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.innerHTML);
         e.currentTarget.parentElement.remove();
       });
       var chillen = new Date();
@@ -67,7 +66,6 @@ var createAudioElement = function() {
       hf.innerHTML = hf.download;
       hf.href = url;
       $li.append($sn);
-      $li.append($rnm);
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
@@ -150,15 +148,19 @@ $('document').ready(function() {
 
 
   $('.removal').on('click', function(e) {
-    removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
+    removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
     e.currentTarget.parentElement.remove();
   });
 
 
-  $('.rename').on('click', function(e) {
-    var oldName = e.currentTarget.previousSibling.previousSibling.innerHTML;
+  $('.trackName').on('click', function(e) {
+    var oldName = e.currentTarget.innerHTML;
     var newName = prompt("What's your track's name?");
     renameIt(oldName, newName);
-    $(this).prev().html(newName);
+    $(this).html(newName);
+  });
+
+  $('#help').on('click', function(){
+    alert('- Start stream before recording and stop stream before you remove headphones. \n \n- After recording a track (ex. 3 minutes long), it can take a minute for the audio element to render on the screen. \n \n - Clicking the speaker icon on each audio element will mute that track. \n \n - Press the green button to play all tracks at once.');
   });
 });

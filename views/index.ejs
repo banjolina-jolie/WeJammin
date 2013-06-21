@@ -18,13 +18,12 @@
       <button id="playAndRecord">rec</button>
       <button id="playAll">play</button>
     </center>
-    <center></center>
+    <center id="help">help</center>
     <center id="status"></center>
       <ul id="recordingslist">
         <% for(var i = 0; i < tracks.length; i++) { %>
           <li>
-            <span><%= tracks[i].name %></span>
-            <span class="rename">rename</span><br>
+            <span class="trackName"><%= tracks[i].name %></span><br>
             <audio src="https://wejammin.s3.amazonaws.com/data/<%= tracks[i]._id %>" controls type="audio/x-wav"></audio>
             <button class="removal">X</button>
           </li><br>

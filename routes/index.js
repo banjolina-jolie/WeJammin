@@ -22,10 +22,10 @@ var client = knox.createClient({
 
 
 var getFilename = function(callback) {
-  var name = crypto.randomBytes(10).toString('hex');
+  // var name = crypto.randomBytes(10).toString('hex');
 
   var newTrack = new Track({
-    name: name
+    name: "[click to rename]"
   });
 
   callback(null, newTrack);
