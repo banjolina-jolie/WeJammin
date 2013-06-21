@@ -23,7 +23,7 @@ var client = knox.createClient({
 
 var getFilename = function(callback) {
   var name = new Date();
-  callback(null, name.toUTCString());
+  callback(null, name.getTime());
 };
 
 
@@ -83,9 +83,6 @@ exports.postHandler = function(req, res){
 exports.rename = function(req, res){
   var oldName = qs.parse(req._parsedUrl.query).trackName;
   var newName = qs.parse(req._parsedUrl.query).newName;
-  fs.rename('./data/'+oldName, './data/'+newName, function(err, success){
-    if(err) console.error(err);
-  });
 
   Track.findOneAndUpdate({name: oldName}, {name: newName}, function(err, success) {
     if(err) console.error(err);
