@@ -99,6 +99,23 @@ var pauseThemAll = function(audioList) {
   }
 };
 
+var timer = function(){
+  var sec = 0;
+  var min = 0;
+  var $timer = $('#timer');
+  setInterval(function(){
+    sec++;
+    if (sec === 60) {
+      sec = 0;
+      min++;
+    }
+    if (sec < 10){
+      $timer.html(min + ":0" + sec);
+    } else {
+      $timer.html(min + ":" + sec);
+    }
+  }, 1000);
+};
 
 $('document').ready(function() {
 
@@ -113,7 +130,8 @@ $('document').ready(function() {
       recording = false;
     } else {
       recorder.record();
-      $('#status').html("recording...");
+      $('#status').html("recording... <span id='timer'>0:00</span>");
+      timer();
       recording = true;
     }
   });
