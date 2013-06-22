@@ -46,6 +46,7 @@ var createAudioElement = function() {
   recorder.exportWAV(function(blob) {
     url = URL.createObjectURL(blob);
 
+
     upload(blob, function(response) {
 
       var $li = $('<li></li>');

@@ -2,7 +2,6 @@ var fs = require('fs');
 var qs = require('querystring');
 var knox = require('knox');
 var mongoose = require('mongoose');
-var crypto = require('crypto');
 
 var MONGOHQ_URI = process.env.MONGO_URI;
 
@@ -91,14 +90,14 @@ exports.rename = function(req, res){
 
 
 exports.delete = function(req, res){
-  client.del('/data/'+ req.params.id).on('response', function(resp){
-    console.log(resp.statusCode);
-    console.log(resp.headers);
-  }).end();
-
   Track.findOneAndRemove({ name: req.params.id }, function(err, success){
     if(err) console.error(err);
-    console.log("track deleted: ", success);
+    console.log(success);
+    var trackID = success._id;
+    client.del('/data/'+ trackID).on('response', function(resp){
+      console.log(resp.statusCode);
+      console.log(resp.headers);
+    }).end();
   });
 };
 
