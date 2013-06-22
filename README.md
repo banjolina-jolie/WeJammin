@@ -7,7 +7,7 @@ This app allows users record audio using a built-in microphone.  The first track
 tracks to be "jammed on".  So lay down a rhythm... then record a couple leads!  Or record a beatbox then rap over it!
 
 The tracks are persistent as long as someone doesn't click the [x] button.  Stay tuned for authenticated user profiles
-and separate rooms to jam in!
+and separate rooms to jam in! Oh ya and it only works with Chrome at the moment...
 
 This app uses:
 
