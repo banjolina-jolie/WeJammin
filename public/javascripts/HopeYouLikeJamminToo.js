@@ -73,6 +73,7 @@ var createAudioElement = function() {
       $li.append($bu);
       $("#recordingslist").append($li);
       uploadToAWS(response.id);
+      $('#status').html('');
     });
   });
 };
@@ -108,7 +109,7 @@ $('document').ready(function() {
       recorder.stop();
       createAudioElement();
       recorder.clear();
-      $('#status').html("");
+      $('#status').html("loading track...");
       recording = false;
     } else {
       recorder.record();
