@@ -98,6 +98,7 @@ exports.delete = function(req, res){
       console.log(resp.statusCode);
       console.log(resp.headers);
     }).end();
+    res.end();
   });
 };
 
