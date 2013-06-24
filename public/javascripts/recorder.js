@@ -7,12 +7,11 @@
     window.localstream = stream;
     window.input.connect(audio_context.destination);
     window.recorder = new Recorder(input);
-    $('#stream').html("end stream");
+    $('.streaming').html("streaming");
   };
 
   window.stopStream = function(stream) {
       stream.stop();
-      console.log('stream ended');
   };
 
   window.init = function() {

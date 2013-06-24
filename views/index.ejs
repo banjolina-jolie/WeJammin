@@ -10,13 +10,12 @@
   </head>
   <body>
     <center><h1><%= title %></h1></center>
-    <span id="wordPlay">play</span>
-    <center>PLUG IN HEADPHONES before starting stream.</center><br><br>
-    <center><button id="stream">start stream</button></center><br>
+    <center>PLUG IN HEADPHONES before starting stream.</center>
+    <center><span class="streaming"><span data-text="streaming...">stream</span></span></center>
     <button id="record"></button>
     <center>
-      <button id="playAndRecord">rec</button>
-      <button id="playAll">play</button>
+      <img id="playAndRecord" src="/images/record_button@2x.png">
+      <img id="playAll" src="/images/silver-play-button.png">
     </center>
     <center id="help">help</center>
     <center id="status"></center>

@@ -46,7 +46,6 @@ var createAudioElement = function() {
   recorder.exportWAV(function(blob) {
     url = URL.createObjectURL(blob);
 
-
     upload(blob, function(response) {
 
       var $li = $('<li></li>');
@@ -87,7 +86,7 @@ var playThemAll = function(audioList) {
   audioList[0].currentTime = 0;
   audioList[0].play();
   for(var i = 1; i < audioList.length; i++) {
-    audioList[i].currentTime = 0.05;
+    audioList[i].currentTime = 0.09;
     audioList[i].play();
   }
 };
@@ -137,7 +136,7 @@ $('document').ready(function() {
   });
 
 
-  $('button#playAll').on('click', function() {
+  $('img#playAll').on('click', function() {
     if(playing){
       pauseThemAll(audios);
       playing = false;
@@ -148,23 +147,23 @@ $('document').ready(function() {
   });
 
 
-  $('button#playAndRecord').on('click', function() {
+  $('img#playAndRecord').on('click', function() {
     $('button#record').trigger('click');
-    $('button#playAll').trigger('click');
+    $('img#playAll').trigger('click');
   });
 
 
-  $('button#stream').on('click', function() {
+  $('span.streaming').on('click', function() {
     if(streaming){
-      $(this).html("start stream");
-      $('.streamingStatus').removeClass("happening");
-      $('.streamingStatus').addClass("notHappening");
+      $(this).removeClass("activeStream");
+      $(this).html("stream");
       window.localstream.stop();
       window.input.disconnect();
       streaming = false;
     } else {
       init();
       streaming = true;
+      $(this).addClass("activeStream");
     }
   });
 
