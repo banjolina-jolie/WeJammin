@@ -85,7 +85,6 @@ exports.rename = function(req, res){
 
   Track.findOneAndUpdate({name: oldName}, {name: newName}, function(err, success) {
     if(err) console.error(err);
-    console.log(success);
   });
 };
 
@@ -93,11 +92,10 @@ exports.rename = function(req, res){
 exports.delete = function(req, res){
   Track.findOneAndRemove({ name: req.params.id }, function(err, success){
     if(err) console.error(err);
-    console.log(success);
     var trackID = success._id;
     client.del('/data/'+ trackID).on('response', function(resp){
-      console.log(resp.statusCode);
-      console.log(resp.headers);
+      console.log("delete statusCode: ", resp.statusCode);
+      console.log("delete response headers: ", resp.headers);
     }).end();
     res.end();
   });
