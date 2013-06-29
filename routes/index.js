@@ -20,10 +20,10 @@ var client = knox.createClient({
 });
 
 
-var getFilename = function(callback) {
+var getFilename = function(name, callback) {
 
   var newTrack = new Track({
-    name: "[click to rename]"
+    name: name
   });
 
   callback(null, newTrack);
@@ -72,8 +72,9 @@ exports.index = function(req, res){
 
 
 exports.postHandler = function(req, res){
-  getFilename(function(err, tracks) {
-    doUpload(err, tracks, req, res);
+  var name = req.query.trackName;
+  getFilename(name, function(err, track) {
+    doUpload(err, track, req, res);
   });
 };
 

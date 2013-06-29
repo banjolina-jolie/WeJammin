@@ -4,9 +4,9 @@ var playing;
 var trackNums = [];
 
 
-var upload = function(blob, callback) {
+var upload = function(trackname, blob, callback) {
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/upload', true);
+  xhr.open('POST', '/upload?trackName='+trackname, true);
   xhr.onload = function(){
     if(xhr.status === 200){
       try {
@@ -46,10 +46,9 @@ var createAudioElement = function() {
   recorder.exportWAV(function(blob) {
     url = URL.createObjectURL(blob);
 
-    upload(blob, function(response) {
 
       var $li = $('<li></li>');
-      var $sn = $('<span class="trackName">'+response.name+'</span><br>').on('click', function(e) {
+      var $sn = $('<span class="trackName">[click to rename]</span><br>').on('click', function(e) {
         var oldName = this.innerHTML;
         var newName = prompt("What's your track's name?");
         if(newName){
@@ -63,15 +62,12 @@ var createAudioElement = function() {
         e.currentTarget.parentElement.remove();
       });
       var $sv = $('<button class="save">save</button>').on('click', function(e){
-        var trackName = e.currentTarget.previousSibling.innerHTML;
-        console.log(trackName);
-        console.log(userName);
+        var trackName = e.currentTarget.previousSibling.previousSibling.innerHTML;
         upload(trackName, blob, function(response) {
           uploadToAWS(response.id);
           $sv.hide();
         });
       });
-      var chillen = new Date();
       var hf = document.createElement('a');
       hf.download = new Date().toISOString() + '.wav';
       hf.innerHTML = hf.download;
@@ -81,9 +77,7 @@ var createAudioElement = function() {
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
-      uploadToAWS(response.id);
       $('#status').html('');
-    });
   });
 };
 
@@ -165,7 +159,6 @@ $('document').ready(function() {
 
   $('span.streaming').on('click', function() {
     if(streaming){
-      $(this).removeClass("activeStream");
       $(this).html("stream");
       window.localstream.stop();
       window.input.disconnect();
@@ -173,7 +166,6 @@ $('document').ready(function() {
     } else {
       init();
       streaming = true;
-      $(this).addClass("activeStream");
     }
   });
 
