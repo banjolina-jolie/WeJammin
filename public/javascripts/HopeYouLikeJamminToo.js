@@ -62,12 +62,22 @@ var createAudioElement = function() {
         removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.innerHTML);
         e.currentTarget.parentElement.remove();
       });
+      var $sv = $('<button class="save">save</button>').on('click', function(e){
+        var trackName = e.currentTarget.previousSibling.innerHTML;
+        console.log(trackName);
+        console.log(userName);
+        upload(trackName, blob, function(response) {
+          uploadToAWS(response.id);
+          $sv.hide();
+        });
+      });
       var chillen = new Date();
       var hf = document.createElement('a');
       hf.download = new Date().toISOString() + '.wav';
       hf.innerHTML = hf.download;
       hf.href = url;
       $li.append($sn);
+      $li.append($sv);
       $li.append($au);
       $li.append($bu);
       $("#recordingslist").append($li);
