@@ -73,10 +73,7 @@ button:hover {
   top: 350px;
   left: 450px;
 }
-.saved {
-  border-style: solid;
-  border-color: #00f;
-}
+
 #help {
   position: fixed;
   top: 30px;
