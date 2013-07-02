@@ -102,7 +102,7 @@ exports.delete = function(req, res){
 };
 
 
-exports.knoxTest = function(requezt){
+exports.knoxUpload = function(requezt){
   var oldName = qs.parse(requezt._parsedUrl.query).trackName;
   fs.readFile('./data/' + oldName, function(err, buf){
     var req = client.put('/data/' + oldName, {
