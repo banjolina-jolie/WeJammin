@@ -58,8 +58,10 @@ var createAudioElement = function() {
       });
       var $au = $('<audio src='+url+' controls></audio>');
       var $bu = $('<button class="removal">X</button>').on('click', function(e) {
-        removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
-        e.currentTarget.parentElement.remove();
+        if(confirm('Are you sure you want to delete this track?')){
+          removeTrack(e.currentTarget.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML);
+          e.currentTarget.parentElement.remove();
+        }
       });
       var $sv = $('<button class="save">save</button>').on('click', function(e){
         var trackName = e.currentTarget.previousSibling.previousSibling.innerHTML;
