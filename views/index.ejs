@@ -9,17 +9,19 @@
     <script src="/javascripts/HopeYouLikeJamminToo.js"></script>
   </head>
   <body>
+    <button id="record"></button>
     <center><h1><%= title %></h1></center>
     <center>PLUG IN HEADPHONES before starting stream.</center>
-    <center><span class="streaming">stream</span></center>
-    <button id="record"></button>
-    <center>
-      <img id="playAndRecord" src="/images/record_button@2x.png">
-      <img id="playAll" src="/images/silver-play-button.png">
+    <center class="buttons">
+      <center><span class="streaming">stream</span></center>
+      <center>
+        <div class="coolbtns"><img id="playAndRecord" src="/images/record_button@2x.png"></div>
+        <div class="coolbtns"><img id="playAll" src="/images/silver-play-button.png"><div>
+      </center>
+      <center id="help">help</center>
+      <div id="status"></div>
     </center>
-    <center id="help">help</center>
-    <center id="status"></center>
-    <div id="progressbar"></div>
+    <div>
       <ul id="recordingslist">
         <% for(var i = 0; i < tracks.length; i++) { %>
           <li>
@@ -29,5 +31,6 @@
           </li><br>
         <% } %>
       </ul>
+    </div>
   </body>
 </html>

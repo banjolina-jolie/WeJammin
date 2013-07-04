@@ -5,7 +5,6 @@ body {
   background-position: 130% 0%;
   background-size: 70%;
   background-repeat: no-repeat;
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 h1 {
@@ -15,10 +14,17 @@ h1 {
 a {
   color: #00b7ff;
 }
+div {
+  display: inline-block;
+}
+.coolbtns {
+  display: inline-block;
+  position: relative;
+}
 ul {
   list-style-type: none;
-  left: 0px;
-  top: 200px;
+  float: top;
+  height: 1%;
 }
 button {
   opacity: 0.7;
@@ -38,9 +44,7 @@ button:hover {
   width: 75px;
   height: 75px;
   opacity: 1;
-  position: absolute;
-  top: 260px;
-  left: 470px;
+  position: relative;
 }
 #playAndRecord:hover {
   cursor: pointer;
@@ -51,13 +55,11 @@ button:hover {
   opacity: 0.84;
 }
 #playAll {
-  margin-top: 4px;
+  top: 5px;
   width: 108px;
   height: 86px;
   opacity: 0.68;
-  position: absolute;
-  top: 249px;
-  left: 545px;
+  position: relative;
 }
 #playAll:hover {
   cursor: pointer;
@@ -69,9 +71,12 @@ button:hover {
 #status {
   font-size: 20px;
   color: #f00;
+<<<<<<< HEAD
   position: absolute;
   top: 350px;
   left: 470px;
+=======
+>>>>>>> buttonsbaby
 }
 #help {
   position: fixed;
@@ -85,14 +90,13 @@ button:hover {
   cursor: pointer;
 }
 span.streaming {
+  position: relative;
   opacity: 0.8;
-  position: absolute;
-  top: 100px;
-  left: 470px;
   color: #000;
   text-decoration: none;
   background-color: #e9f50a;
   font-family: 'Yanone Kaffeesatz';
+  text-shadow: 0 -1px 0 #fff;
   font-size: 2em;
   display: block;
   padding: 4px;
@@ -101,8 +105,8 @@ span.streaming {
   border-radius: 100px;
   -webkit-box-shadow: 0px 9px 0px #6f7321, 0px 9px 25px rgba(0,0,0,0.7);
   -moz-box-shadow: 0px 9px 0px #6f7321, 0px 9px 25px rgba(0,0,0,0.7);
-  box-shadow: 0px 7px 0px #6f7321, 0px 7px 25px rgba(0,0,0,0.7);
-  margin: 100px auto;
+  box-shadow: 0px 6px 0px #6f7321, 0px 7px 25px #000, inset 0 0 10px #6f7321, 0 0 10px #000;
+  margin: 20px auto;
   width: 160px;
   text-align: center;
   -webkit-transition: all 0.1s ease;
@@ -112,10 +116,10 @@ span.streaming {
   transition: all 0.1s ease;
 }
 span.streaming:active {
-  top: 103px;
+  top: 3px;
   -webkit-box-shadow: 0px 1px 0px #6f7321, 0px 1px 6px rgba(0,0,0,0.9);
   -moz-box-shadow: 0px 3px 0px #6f7321, 0px 3px 6px rgba(0,0,0,0.9);
-  box-shadow: 0px 3px 0px #6f7321, 0px 3px 6px rgba(0,0,0,0.9);
+  box-shadow: 0px 3px 0px #6f7321, inset 0 0 15px #6f7321, 0 0 10px rgba(0,0,0,0.7);
 }
 span.streaming:hover {
   cursor: pointer;
