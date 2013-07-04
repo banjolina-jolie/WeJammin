@@ -188,6 +188,6 @@ $('document').ready(function() {
   });
 
   $('#help').on('click', function(){
-    alert('- Start stream before recording and stop stream before you remove headphones. \n \n- After recording a track (ex. 3 minutes long), it can take a minute for the audio element to render on the screen. \n \n - Clicking the speaker icon on each audio element will mute that track. \n \n - Press the green button to play all tracks at once.');
+    alert('- Start stream before recording and stop stream before removing headphones. \n \n- After recording a track (ex. 3 minutes long), it can take some time for the audio element to render on the screen. \n \n - Clicking the speaker icon on each audio element will mute that track. \n \n - The silver play button plays all tracks at once.');
   });
 });
