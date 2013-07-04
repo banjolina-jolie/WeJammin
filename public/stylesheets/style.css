@@ -71,9 +71,8 @@ button:hover {
   color: #f00;
   position: absolute;
   top: 350px;
-  left: 450px;
+  left: 470px;
 }
-
 #help {
   position: fixed;
   top: 30px;
