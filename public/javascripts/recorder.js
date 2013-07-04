@@ -1,3 +1,5 @@
+// Matt Diamond's RecorderJS plug-in with some minor adjustments
+
 (function(window){
 
   window.localstream;

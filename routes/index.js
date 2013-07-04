@@ -1,7 +1,7 @@
-var fs = require('fs');
-var qs = require('querystring');
-var knox = require('knox');
-var mongoose = require('mongoose');
+var fs = require('fs'),
+    qs = require('querystring'),
+    knox = require('knox'),
+    mongoose = require('mongoose');
 
 var MONGOHQ_URI = process.env.MONGO_URI;
 
@@ -14,18 +14,14 @@ var trackSchema = new mongoose.Schema({
 var Track = mongoose.model('Track', trackSchema);
 
 var client = knox.createClient({
-    key: process.env.S3_KEY
-  , secret: process.env.S3_SECRET
-  , bucket: process.env.S3_BUCKET
+    key: process.env.S3_KEY,
+    secret: process.env.S3_SECRET,
+    bucket: process.env.S3_BUCKET
 });
 
 
 var getFilename = function(name, callback) {
-
-  var newTrack = new Track({
-    name: name
-  });
-
+  var newTrack = new Track({ name: name });
   callback(null, newTrack);
 };
 
@@ -80,8 +76,8 @@ exports.postHandler = function(req, res){
 
 
 exports.rename = function(req, res){
-  var oldName = qs.parse(req._parsedUrl.query).trackName;
-  var newName = qs.parse(req._parsedUrl.query).newName;
+  var oldName = qs.parse(req._parsedUrl.query).trackName,
+      newName = qs.parse(req._parsedUrl.query).newName;
 
   Track.findOneAndUpdate({name: oldName}, {name: newName}, function(err, success) {
     if(err) console.error(err);
@@ -106,9 +102,9 @@ exports.knoxUpload = function(requezt){
   var oldName = qs.parse(requezt._parsedUrl.query).trackName;
   fs.readFile('./data/' + oldName, function(err, buf){
     var req = client.put('/data/' + oldName, {
-        'x-amz-acl': 'public-read'
-      , 'Content-Length': buf.length
-      , 'Content-Type': 'text/plain'
+        'x-amz-acl': 'public-read',
+        'Content-Length': buf.length,
+        'Content-Type': 'text/plain'
     });
     req.on('response', function(res){
       if (200 == res.statusCode) {

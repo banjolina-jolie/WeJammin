@@ -3,10 +3,10 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var routes = require('./routes');
-var http = require('http');
-var path = require('path');
+var express = require('express'),
+    routes = require('./routes'),
+    http = require('http'),
+    path = require('path');
 
 var app = express();
 
@@ -26,18 +26,14 @@ app.use('/data', express.static(path.join(__dirname, '/data/')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
-
 app.post('/upload', routes.postHandler);
-
 app.post('/rename', routes.rename);
-
 app.post('/knoxLoad', routes.knoxUpload)
-
 app.delete('/delete/:id', routes.delete);
 
 http.createServer(app).listen(app.get('port'), function(){
