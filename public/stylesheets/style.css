@@ -41,6 +41,7 @@ button:hover {
   opacity: 1;
 }
 #playAndRecord {
+  left: 7px;
   width: 75px;
   height: 75px;
   opacity: 1;
@@ -55,6 +56,7 @@ button:hover {
   opacity: 0.84;
 }
 #playAll {
+  left: 8px;
   top: 5px;
   width: 108px;
   height: 86px;
@@ -71,12 +73,6 @@ button:hover {
 #status {
   font-size: 20px;
   color: #f00;
-<<<<<<< HEAD
-  position: absolute;
-  top: 350px;
-  left: 470px;
-=======
->>>>>>> buttonsbaby
 }
 #help {
   position: fixed;
