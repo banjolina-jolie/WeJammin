@@ -3,6 +3,8 @@
 
 http://wejammin.herokuapp.com
 
+![Alt text](data/wejammin.png)
+
 This app allows users record audio using a built-in microphone.  The first track acts as the mother track for all other
 tracks to be "jammed on".  So lay down a rhythm... then record a couple leads!  Or record a beatbox then rap over it!
 
